@@ -5,8 +5,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import fylder.book.demo.di.component.DaggerBookComponent
-import fylder.book.demo.mpv.contract.BookContract
-import fylder.book.demo.mpv.presenter.BookPresenter
+import fylder.book.demo.mvp.contract.BookContract
+import fylder.book.demo.mvp.presenter.BookPresenter
 import fylder.book.lib.app.BaseApplication
 import fylder.book.lib.base.BaseActivity
 import fylder.book.lib.config.router.RouterConfig
@@ -21,18 +21,21 @@ class BookActivity : BaseActivity<BookPresenter>(), BookContract.View {
 
     override fun initViews() {
         DaggerBookComponent.builder()
-            .appComponent(BaseApplication.instance.component)
-            .view(this)
-            .build()
-            .inject(this)
+                .appComponent(BaseApplication.instance.component)
+                .view(this)
+                .build()
+                .inject(this)
 
         book_btn.setOnClickListener {
             mPresenter.http()
         }
         book_test_btn.setOnClickListener {
             ARouter.getInstance().build(RouterConfig.USER_LOGIN)
-                .navigation(this)
+                    .navigation(this)
         }
+        book_add_btn.setOnClickListener { mPresenter.add() }
+        book_query_btn.setOnClickListener { mPresenter.query() }
+        book_delete_btn.setOnClickListener { mPresenter.delete() }
     }
 
     override fun loadData() {
@@ -59,5 +62,9 @@ class BookActivity : BaseActivity<BookPresenter>(), BookContract.View {
     override fun success(msg: String) {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun queryContent(content: String) {
+        book_text.text = content
     }
 }

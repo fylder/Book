@@ -4,7 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import fylder.book.demo.BookActivity
 import fylder.book.demo.di.moudle.BookModule
-import fylder.book.demo.mpv.contract.BookContract
+import fylder.book.demo.mvp.contract.BookContract
 import fylder.book.lib.di.AppComponent
 import fylder.book.lib.di.common.CommonModule
 import fylder.book.lib.di.common.RetrofitModule

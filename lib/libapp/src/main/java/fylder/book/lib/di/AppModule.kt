@@ -1,6 +1,5 @@
 package fylder.book.lib.di
 
-import com.roger.catloadinglibrary.CatLoadingView
 import dagger.Module
 import dagger.Provides
 import fylder.book.lib.app.BaseApplication
