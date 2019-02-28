@@ -44,6 +44,8 @@ greendao {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api rootProject.ext.dependencies["appcompat_v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["constraint_layout"]
     //rxjava
     api rootProject.ext.dependencies["rxjava2"]
     api rootProject.ext.dependencies["rxandroid2"]
@@ -70,7 +72,5 @@ dependencies {
     //        exclude group: 'com.android.support'
     //    }
     kapt rootProject.ext.dependencies["arouter_compiler"]
-    implementation rootProject.ext.dependencies["butterknife"]
-    kapt rootProject.ext.dependencies["butterknife_compiler"]
     api rootProject.ext.dependencies["catloadinglibrary"]
 }

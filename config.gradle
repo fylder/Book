@@ -4,7 +4,7 @@ ext {
             applicationId    : "fylder.book.demo",
             compileSdkVersion: 28,
             buildToolsVersion: "28.0.3",
-            minSdkVersion    : 14,
+            minSdkVersion    : 21,
             targetSdkVersion : 28,
             versionCode      : 1,
             versionName      : "1.0.0"
@@ -28,7 +28,7 @@ ext {
             arouterApiVersion       : "1.4.1",
             arouterCompilerVersion  : "1.2.2",
             okhttpVersion           : "3.12.0",
-            greendaoVersion            : "3.2.2"
+            greendaoVersion         : "3.2.2"
     ]
 
     dependencies = [

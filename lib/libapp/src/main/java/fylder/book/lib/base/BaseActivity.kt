@@ -1,15 +1,11 @@
 package fylder.book.lib.base
 
-
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import butterknife.ButterKnife
-import butterknife.Unbinder
+import com.roger.catloadinglibrary.CatLoadingView
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import javax.inject.Inject
-import com.roger.catloadinglibrary.CatLoadingView
-
 
 /**
  * Activity基类
@@ -17,9 +13,7 @@ import com.roger.catloadinglibrary.CatLoadingView
  */
 abstract class BaseActivity<P : BasePresenter<out BaseView>> : RxAppCompatActivity() {
 
-    protected var mRxPermissions: RxPermissions? = null
-
-    protected var unbinder: Unbinder? = null
+    protected lateinit var mRxPermissions: RxPermissions
 
     @Inject
     lateinit var loadingView: CatLoadingView
@@ -32,9 +26,7 @@ abstract class BaseActivity<P : BasePresenter<out BaseView>> : RxAppCompatActivi
         //禁止横屏
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(getLayoutResId())
-        unbinder = ButterKnife.bind(this)
         mRxPermissions = RxPermissions(this)
-        loadFragment(savedInstanceState)
         initService()
         initViews()
         loadData()
@@ -46,10 +38,6 @@ abstract class BaseActivity<P : BasePresenter<out BaseView>> : RxAppCompatActivi
     protected abstract fun initViews()
 
     protected abstract fun loadData()
-
-    private fun loadFragment(savedInstanceState: Bundle?) {
-    }
-
 
     override fun onStart() {
         super.onStart()
@@ -81,12 +69,7 @@ abstract class BaseActivity<P : BasePresenter<out BaseView>> : RxAppCompatActivi
 
     override fun onDestroy() {
         super.onDestroy()
-
-        unbinder!!.unbind()
-
         mPresenter.detachView()
-
-        mRxPermissions = null
     }
 
     fun baseShowLoading() {

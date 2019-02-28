@@ -1,6 +1,7 @@
 package fylder.book.demo.mvp.contract
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import fylder.book.lib.base.BaseActivity
 import fylder.book.lib.base.BaseView
 
 interface BookContract {
@@ -13,7 +14,7 @@ interface BookContract {
 
         fun error(msg: String)
 
-        fun queryContent(content:String)
+        fun queryContent(content: String)
 
     }
 }

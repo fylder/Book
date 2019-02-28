@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @ActivityScope
 class BookPresenter @Inject constructor(private var iView: BookContract.View) :
-        BasePresenter<BookContract.View>(iView) {
+    BasePresenter<BookContract.View>(iView) {
 
     @Inject
     lateinit var retrofitClient: RetrofitClient
@@ -28,25 +28,25 @@ class BookPresenter @Inject constructor(private var iView: BookContract.View) :
     fun http() {
         iView.showLoading()
         retrofitClient.getInstance(BookApi::class.java).user()
-                .bindUntilEvent(iView.getActivity(), ActivityEvent.DESTROY)
-                .compose(SchedulersThread.applySchedulers())
-                .subscribe({
-                    iView.hideLoading()
-                    Logger.w("s:$it")
-                    iView.success(it.name)
-                }, {
-                    iView.hideLoading()
-                    Logger.e("error:$it")
-                    if (it is HttpException) {
-                        val response = it.response().errorBody()
-                        val msg = response!!.string()
-                        Logger.w("error:$msg")
-                        Toast.makeText(iView.getActivity(), msg, Toast.LENGTH_SHORT).show()
-                        iView.success(msg)
-                    } else {
-                        iView.error(it.message!!)
-                    }
-                })
+            .bindUntilEvent(iView.getActivity(), ActivityEvent.DESTROY)
+            .compose(SchedulersThread.applySchedulers())
+            .subscribe({
+                iView.hideLoading()
+                Logger.w("s:$it")
+                iView.success(it.name)
+            }, {
+                iView.hideLoading()
+                Logger.e("error:$it")
+                if (it is HttpException) {
+                    val response = it.response().errorBody()
+                    val msg = response!!.string()
+                    Logger.w("error:$msg")
+                    Toast.makeText(iView.getActivity(), msg, Toast.LENGTH_SHORT).show()
+                    iView.success(msg)
+                } else {
+                    iView.error(it.message!!)
+                }
+            })
     }
 
     fun add() {

@@ -64,12 +64,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["constraint_layout"]
-
     kapt rootProject.ext.dependencies["dagger2-compiler"]
-
-    implementation rootProject.ext.dependencies["butterknife"]
-    kapt rootProject.ext.dependencies["butterknife_compiler"]
     kapt rootProject.ext.dependencies["arouter_compiler"]
 }
