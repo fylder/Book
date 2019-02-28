@@ -5,7 +5,7 @@ import com.orhanobut.logger.Logger
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.kotlin.bindUntilEvent
 import fylder.book.lib.base.BasePresenter
-import fylder.book.demo.di.scope.ActivityScope
+import fylder.book.lib.di.scope.ActivityScope
 import fylder.book.lib.http.BookApi
 import fylder.book.lib.http.RetrofitClient
 import fylder.book.lib.http.tools.SchedulersThread
@@ -20,25 +20,7 @@ class BookPresenter @Inject constructor(private var iView: BookContract.View) :
     @Inject
     lateinit var retrofitClient: RetrofitClient
 
-//    fun http() {
-//        Toast.makeText(iView.getActivity(), "123", Toast.LENGTH_SHORT).show()
-//        retrofitClient.getInstance(BookApi::class.java).user()
-//            .bindUntilEvent(iView.getActivity(), ActivityEvent.DESTROY)
-//            .compose(SchedulersThread.applySchedulers())
-//            .subscribe({
-//                Logger.w("s$it")
-//            }, {
-//                Logger.e("error:$it")
-//                if (it is HttpException) {
-//                    val response = it.response().errorBody()
-//                    val msg = response!!.string()
-//                    Logger.w("error:$msg")
-//                    Toast.makeText(iView.getActivity(), msg, Toast.LENGTH_SHORT).show()
-//                }
-//            })
-//    }
-
-    fun http2() {
+    fun http() {
         iView.showLoading()
         retrofitClient.getInstance(BookApi::class.java).user()
             .bindUntilEvent(iView.getActivity(), ActivityEvent.DESTROY)

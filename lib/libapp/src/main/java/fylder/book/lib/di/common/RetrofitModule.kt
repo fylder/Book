@@ -1,4 +1,4 @@
-package fylder.book.demo.di.common
+package fylder.book.lib.di.common
 
 import dagger.Module
 import dagger.Provides

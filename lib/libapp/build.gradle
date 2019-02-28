@@ -49,11 +49,14 @@ dependencies {
     api rootProject.ext.dependencies["retrofit_converter_gson"]
     api rootProject.ext.dependencies["retrofit_adapter_rxjava2"]
     api rootProject.ext.dependencies["rxlifecycle2_kotlin"]
+    implementation rootProject.ext.dependencies["logging_interceptor"]
 
     //dagger
     api rootProject.ext.dependencies["dagger2"]
     api 'com.android.support.constraint:constraint-layout:1.1.3'
     kapt rootProject.ext.dependencies["dagger2-compiler"]
+
+    api rootProject.ext.dependencies["logger"]
 
     // router
     api rootProject.ext.dependencies["arouter_api"]

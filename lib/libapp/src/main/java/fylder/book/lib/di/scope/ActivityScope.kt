@@ -1,4 +1,4 @@
-package fylder.book.demo.di.scope
+package fylder.book.lib.di.scope
 
 import javax.inject.Scope
 

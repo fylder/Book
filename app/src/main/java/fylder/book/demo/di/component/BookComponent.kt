@@ -3,14 +3,18 @@ package fylder.book.demo.di.component
 import dagger.BindsInstance
 import dagger.Component
 import fylder.book.demo.BookActivity
-import fylder.book.demo.di.AppComponent
 import fylder.book.demo.di.moudle.BookModule
-import fylder.book.demo.di.common.RetrofitModule
-import fylder.book.demo.di.scope.ActivityScope
 import fylder.book.demo.mpv.contract.BookContract
+import fylder.book.lib.di.AppComponent
+import fylder.book.lib.di.common.CommonModule
+import fylder.book.lib.di.common.RetrofitModule
+import fylder.book.lib.di.scope.ActivityScope
 
 @ActivityScope
-@Component(modules = [BookModule::class, RetrofitModule::class], dependencies = [AppComponent::class])
+@Component(
+    modules = [BookModule::class, CommonModule::class, RetrofitModule::class],
+    dependencies = [AppComponent::class]
+)
 interface BookComponent {
 
     fun inject(activity: BookActivity)

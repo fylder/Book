@@ -67,8 +67,6 @@ dependencies {
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["constraint_layout"]
 
-    implementation rootProject.ext.dependencies["logger"]
-
     kapt rootProject.ext.dependencies["dagger2-compiler"]
 
     implementation rootProject.ext.dependencies["butterknife"]

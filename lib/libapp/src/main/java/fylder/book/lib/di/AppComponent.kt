@@ -1,12 +1,12 @@
-package fylder.book.demo.di
+package fylder.book.lib.di
 
 import dagger.Component
-import fylder.book.demo.app.BookApp
+import fylder.book.lib.app.BaseApplication
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun inject(application: BookApp)
+    fun inject(application: BaseApplication)
 }
