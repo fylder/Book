@@ -1,0 +1,77 @@
+apply plugin: 'calces.modules'
+//apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                versionApk(variant, defaultConfig)
+            }
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                versionApk(variant, defaultConfig)
+            }
+        }
+    }
+    lintOptions {
+        disable 'CheckResult'
+    }
+}
+
+def versionApk(variant, defaultConfig) {
+    def today = new Date()
+    variant.outputs.all {
+        def appName = "Mvp.apk"
+        println "ahh"
+        if (variant.name == "debug") {
+            appName = "Mvp-v" + defaultConfig.versionName + "-debug.apk"
+        } else if (variant.name == "release") {
+            appName = "Mvp-v" + defaultConfig.versionName + "-" + today.format('yyyyMMddhhmm') + "-release.apk"
+        }
+        outputFileName = appName
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+dependencies {
+    implementation project(':lib:libapp')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["constraint_layout"]
+
+    implementation rootProject.ext.dependencies["logger"]
+
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+
+    implementation rootProject.ext.dependencies["butterknife"]
+    kapt rootProject.ext.dependencies["butterknife_compiler"]
+    kapt rootProject.ext.dependencies["arouter_compiler"]
+}
