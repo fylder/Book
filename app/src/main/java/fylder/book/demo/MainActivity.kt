@@ -17,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             ARouter.getInstance().build(RouterConfig.APP_BOOK).navigation(this)
         }
+        main_user.setOnClickListener {
+            ARouter.getInstance().build(RouterConfig.USER_USER).navigation(this)
+        }
     }
 
 }

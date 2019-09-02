@@ -69,7 +69,9 @@ abstract class BaseActivity<P : BasePresenter<out BaseView>> : RxAppCompatActivi
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.detachView()
+        if (mPresenter != null) {
+            mPresenter.detachView()
+        }
     }
 
     fun baseShowLoading() {

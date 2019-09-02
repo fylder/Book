@@ -3,6 +3,8 @@
           package="fylder.book.user">
 
     <application>
+        <activity android:name=".UserActivity">
+        </activity>
         <activity android:name=".LoginActivity">
         </activity>
     </application>

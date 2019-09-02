@@ -24,5 +24,6 @@ object RouterConfig {
 
     //user
     const val USER_LOGIN = "/$GROUP_USER/login"
+    const val USER_USER = "/$GROUP_USER/user"
 
 }

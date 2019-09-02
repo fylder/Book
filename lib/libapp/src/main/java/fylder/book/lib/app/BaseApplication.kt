@@ -8,6 +8,10 @@ import fylder.book.lib.BuildConfig
 import fylder.book.lib.di.AppComponent
 import fylder.book.lib.di.AppModule
 import fylder.book.lib.di.DaggerAppComponent
+import com.orhanobut.logger.PrettyFormatStrategy
+import com.orhanobut.logger.FormatStrategy
+
+
 
 /**
  * create by fylder on 2018/7/16
@@ -21,7 +25,14 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        Logger.addLogAdapter(AndroidLogAdapter())
+        val formatStrategy = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
+            .methodCount(1)         // (Optional) How many method line to show. Default 2
+//            .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
+//            .logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
+//            .tag("My custom tag")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+            .build()
+        Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
         setup()
         if (BuildConfig.DEBUG) { //debug模式下
             ARouter.openLog()

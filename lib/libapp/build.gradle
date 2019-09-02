@@ -54,6 +54,7 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle2_components"]
     api rootProject.ext.dependencies["rxlifecycle2_android_lifecycle"]
     api rootProject.ext.dependencies["rxpermissions2"]
+    api rootProject.ext.dependencies["glide"]
     //http
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit_converter_gson"]
@@ -62,7 +63,6 @@ dependencies {
     implementation rootProject.ext.dependencies["logging_interceptor"]
     //dagger
     api rootProject.ext.dependencies["dagger2"]
-    api 'com.android.support.constraint:constraint-layout:1.1.3'
     kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["greendao"]
     api rootProject.ext.dependencies["logger"]
